@@ -19,6 +19,8 @@ const WorryAddition = () => {
     date: Date.now(),
   });
 
+  const { user, title, content } = worry;
+
   // worries 데이터 가져오기
   useEffect(() => {
     dispatch(__getWorries());
@@ -26,8 +28,12 @@ const WorryAddition = () => {
 
   // 추가 버튼 클릭
   const handleAddWorry = (worry) => {
-    dispatch(__addWorry(worry));
-    navitate("/list");
+    if (user.trim() !== "" && title.trim() !== "" && content.trim() !== "") {
+      dispatch(__addWorry(worry));
+      navitate("/list");
+    } else {
+      alert("내용을 채워주세요");
+    }
   };
 
   const handleInputChange = (e) => {
@@ -49,26 +55,26 @@ const WorryAddition = () => {
           text="이름을 입력해주세요."
           id="user"
           labeltext="작성자"
-          // inputValue={worry.user}
+          value={user}
           onChange={handleInputChange}
+          // error={user === "" ? setIsError(true) : setIsError(false)}
         />
-
         <CommonInput
           text="제목을 입력해주세요."
           id="title"
           labeltext="제목"
-          // inputValue={worry.title}
+          value={title}
           onChange={handleInputChange}
+          // error={title === "" ? setIsError(true) : setIsError(false)}
         />
-
         <CommonTextArea
           text="내용을 입력해주세요."
           id="content"
           labeltext="내용"
-          // inputValue={worry.content}
+          value={content}
           onChange={handleInputChange}
+          // error={content === "" ? setIsError(true) : setIsError(false)}
         />
-
         <StButtonContainer>
           <CommonButton
             text="추가하기"

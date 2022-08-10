@@ -29,7 +29,7 @@ const CommonButton = ({
           {text}
         </MyButton>
       ) : (
-        <IconButton onClick={onClick} color={iconColor}>
+        <IconButton onClick={onClick} color={iconColor} size={size}>
           {del && <DeleteIcon />}
           {add && <AddCircleIcon />}
           {edit && <EditIcon />}

@@ -36,7 +36,7 @@ export default MainButton;
 
 const StContainer = styled.div`
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 6px;
   padding: 20px 40px;
   margin-top: 30px;
   cursor: pointer;

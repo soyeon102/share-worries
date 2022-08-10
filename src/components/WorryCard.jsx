@@ -35,12 +35,12 @@ const WorryCard = ({ id, user, title, date, onClick }) => {
 
 export default WorryCard;
 
-const StContainer = styled.div`
+const StContainer = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 6px;
   padding: 20px 30px;
 
   & + & {
