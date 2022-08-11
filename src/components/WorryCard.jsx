@@ -55,11 +55,6 @@ const StListtitle = styled.div`
   margin-bottom: 10px;
 `;
 
-const StListWriter = styled.div`
-  /* font-size: 10px;
-  margin-top: 10px; */
-`;
-
 const StListDate = styled.div`
   margin-top: 6px;
   color: #999;
