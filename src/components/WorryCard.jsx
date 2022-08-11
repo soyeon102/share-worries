@@ -48,6 +48,8 @@ const StContainer = styled.li`
   }
 `;
 
+const StListWriter = styled.div``;
+
 const StCard = styled.div``;
 
 const StListtitle = styled.div`
