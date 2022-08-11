@@ -1,12 +1,7 @@
-import Layout from "../layout/Layout";
-import MainButton from "../MainButton";
-import CommonButton from "../elements/CommonButton";
+import Layout from "../components/layout/Layout";
+import MainButton from "../components/MainButton";
 
 const Home = () => {
-  const handleClick = () => {
-    console.log("Click!");
-  };
-
   return (
     <Layout>
       <MainButton writePage={true} text="고민 기록하기" />

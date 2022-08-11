@@ -1,7 +1,7 @@
-import Layout from "../layout/Layout";
+import Layout from "../components/layout/Layout";
+import WorryList from "../components/WorryList";
+import CommonButton from "../components/elements/CommonButton";
 import styled from "styled-components";
-import WorryList from "../WorryList";
-import CommonButton from "../elements/CommonButton";
 import { useNavigate } from "react-router-dom";
 
 const ListPage = () => {

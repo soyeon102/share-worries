@@ -27,8 +27,13 @@ const WorryCommentList = () => {
   };
 
   const handleAddComment = (newComment) => {
-    dispatch(__addComment(newComment));
-    setComments({ ...comments, commentUser: "", comment: "" });
+    if (comments.commentUser.trim() === "" || comments.comment.trim() === "") {
+      alert("댓글을 작성해주세요.");
+      return;
+    } else {
+      dispatch(__addComment(newComment));
+      setComments({ ...comments, commentUser: "", comment: "" });
+    }
   };
 
   useEffect(() => {
@@ -41,7 +46,6 @@ const WorryCommentList = () => {
         <Stack spacing={3}>
           <StCommentAdd>
             <StText>댓글남기기</StText>
-
             <StUserInput
               type="text"
               id="commentUser"

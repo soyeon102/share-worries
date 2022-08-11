@@ -1,5 +1,5 @@
-import Layout from "../layout/Layout";
-import WorryAddition from "../WorryAddition";
+import Layout from "../components/layout/Layout";
+import WorryAddition from "../components/WorryAddition";
 
 const WritingPage = () => {
   return (

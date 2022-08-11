@@ -16,6 +16,7 @@ const CommonButton = ({
   add,
   del,
   edit,
+  disabled,
 }) => {
   return (
     <StyledEngineProvider injectFirst>
@@ -29,7 +30,12 @@ const CommonButton = ({
           {text}
         </MyButton>
       ) : (
-        <IconButton onClick={onClick} color={iconColor} size={size}>
+        <IconButton
+          onClick={onClick}
+          color={iconColor}
+          size={size}
+          disabled={disabled}
+        >
           {del && <DeleteIcon />}
           {add && <AddCircleIcon />}
           {edit && <EditIcon />}

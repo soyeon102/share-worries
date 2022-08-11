@@ -37,12 +37,8 @@ const WorryAddition = () => {
   };
 
   const handleInputChange = (e) => {
-    // console.log(e.target.value);
     setWorry({ ...worry, [e.target.id]: e.target.value });
   };
-
-  // console.log(worries);
-  // console.log(worry);
 
   return (
     <div>

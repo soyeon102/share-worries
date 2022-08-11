@@ -2,21 +2,30 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import CommonButton from "./elements/CommonButton";
-import { __deleteComment } from "../redux/modules/worrySlice";
+import { __deleteComment, __editComment } from "../redux/modules/worrySlice";
 
 const WorryComment = ({ filterComment }) => {
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
+  const { commentUser, comment, id } = filterComment || {};
+  const [editComment, setEditComment] = useState(comment ? comment : "");
+
   const handleEdit = (id) => {
-    setIsEdit(!isEdit);
-    console.log(id);
+    setIsEdit(true);
   };
 
-  const { commentUser, comment, id } = filterComment || {};
+  const handleEditOk = () => {
+    if (editComment === "") {
+      alert("댓글을 입력해주세요");
+    } else {
+      setIsEdit(false);
+      dispatch(__editComment({ id: id, comment: editComment }));
+    }
+  };
 
-  const handleCommentChange = () => {};
-
-  console.log(filterComment);
+  const handleCommentChange = (e) => {
+    setEditComment(e.target.value);
+  };
 
   return (
     <>
@@ -24,19 +33,22 @@ const WorryComment = ({ filterComment }) => {
         <StCommentBox>
           <StUser>{commentUser}</StUser>
           <StItem>
-            <StEditInput defaultValue={comment} />
+            <StEditInput
+              defaultValue={comment}
+              onChange={handleCommentChange}
+            />
 
             <StButtonGroup>
               <CommonButton
                 edit="true"
                 iconColor="primary"
                 onClick={() => {
-                  handleEdit(id);
+                  handleEditOk();
                 }}
               />
               <CommonButton
                 del="true"
-                iconColor="primary"
+                disabled
                 onClick={() => {
                   dispatch(__deleteComment(id));
                 }}
@@ -86,7 +98,7 @@ const StItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 0 0 10px;
 `;
 
 const StUser = styled.div`
