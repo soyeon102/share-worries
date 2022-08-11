@@ -5,7 +5,7 @@ export const __getWorries = createAsyncThunk(
   "GET_WORRIES",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(`https://worry-share.herokuapp.com/worries`);
+      const data = await axios.get(`https://share-worries.herokuapp.com`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -15,7 +15,7 @@ export const __getWorries = createAsyncThunk(
 
 export const __addWorry = createAsyncThunk("ADD_WORRY", async (newWorry) => {
   const data = await axios.post(
-    `https://worry-share.herokuapp.com/worries`,
+    `https://share-worries.herokuapp.com`,
     newWorry
   );
   return data.data;
@@ -24,7 +24,7 @@ export const __addWorry = createAsyncThunk("ADD_WORRY", async (newWorry) => {
 export const __deleteWorry = createAsyncThunk(
   "DELETE_WORRY",
   async (listId) => {
-    await axios.delete(`https://worry-share.herokuapp.com/worries/${listId}`);
+    await axios.delete(`https://share-worries.herokuapp.com/worries/${listId}`);
     return listId;
   }
 );
@@ -33,16 +33,19 @@ export const __deleteComment = createAsyncThunk(
   "DELETE_COMMENT",
   async (commentId) => {
     await axios.delete(
-      `https://worry-share.herokuapp.com/comments/${commentId}`
+      `https://share-worries.herokuapp.com/comments/${commentId}`
     );
     return commentId;
   }
 );
 
 export const __editWorry = createAsyncThunk("EDIT_WORRY", async (payload) => {
-  await axios.patch(`https://worry-share.herokuapp.com/worries/${payload.id}`, {
-    content: payload.content,
-  });
+  await axios.patch(
+    `https://share-worries.herokuapp.com/worries/${payload.id}`,
+    {
+      content: payload.content,
+    }
+  );
   return payload;
 });
 
@@ -51,7 +54,7 @@ export const __getWorryComments = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get(
-        `https://worry-share.herokuapp.com/comments`
+        `https://share-worries.herokuapp.com/comments`
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -64,7 +67,7 @@ export const __addComment = createAsyncThunk(
   "ADD_COMMENT",
   async (newComment) => {
     const data = await axios.post(
-      `https://worry-share.herokuapp.com/comments`,
+      `https://share-worries.herokuapp.com/comments`,
       newComment
     );
     return data.data;
@@ -75,7 +78,7 @@ export const __editComment = createAsyncThunk(
   "EDIT_COMMENT",
   async (payload) => {
     await axios.patch(
-      `https://worry-share.herokuapp.com/comments/${payload.id}`,
+      `https://share-worries.herokuapp.com/comments/${payload.id}`,
       {
         comment: payload.comment,
       }
