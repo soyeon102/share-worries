@@ -5,7 +5,7 @@ export const __getWorries = createAsyncThunk(
   "GET_WORRIES",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(`https://worry-share.herokuapp.com`);
+      const data = await axios.get(`https://worry-share.herokuapp.com/worries`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
