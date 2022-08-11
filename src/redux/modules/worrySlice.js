@@ -1,11 +1,12 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+const api_url = process.env.REACT_APP_API_URL;
 
 export const __getWorries = createAsyncThunk(
   "GET_WORRIES",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_API_URL}/worries`);
+      const data = await axios.get(`${api_url}/worries`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -14,17 +15,14 @@ export const __getWorries = createAsyncThunk(
 );
 
 export const __addWorry = createAsyncThunk("ADD_WORRY", async (newWorry) => {
-  const data = await axios.post(
-    `${process.env.REACT_APP_API_URL}/worries`,
-    newWorry
-  );
+  const data = await axios.post(`${api_url}/worries`, newWorry);
   return data.data;
 });
 
 export const __deleteWorry = createAsyncThunk(
   "DELETE_WORRY",
   async (listId) => {
-    await axios.delete(`${process.env.REACT_APP_API_URL}/worries/${listId}`);
+    await axios.delete(`${api_url}/worries/${listId}`);
     return listId;
   }
 );
@@ -32,15 +30,13 @@ export const __deleteWorry = createAsyncThunk(
 export const __deleteComment = createAsyncThunk(
   "DELETE_COMMENT",
   async (commentId) => {
-    await axios.delete(
-      `${process.env.REACT_APP_API_URL}/comments/${commentId}`
-    );
+    await axios.delete(`${api_url}/comments/${commentId}`);
     return commentId;
   }
 );
 
 export const __editWorry = createAsyncThunk("EDIT_WORRY", async (payload) => {
-  await axios.patch(`${process.env.REACT_APP_API_URL}/worries/${payload.id}`, {
+  await axios.patch(`${api_url}/worries/${payload.id}`, {
     content: payload.content,
   });
   return payload;
@@ -50,7 +46,7 @@ export const __getWorryComments = createAsyncThunk(
   "GET_WORRY_COMMENTS",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_API_URL}/comments`);
+      const data = await axios.get(`${api_url}/comments`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -61,10 +57,7 @@ export const __getWorryComments = createAsyncThunk(
 export const __addComment = createAsyncThunk(
   "ADD_COMMENT",
   async (newComment) => {
-    const data = await axios.post(
-      `${process.env.REACT_APP_API_URL}/comments`,
-      newComment
-    );
+    const data = await axios.post(`${api_url}/comments`, newComment);
     return data.data;
   }
 );
@@ -72,12 +65,9 @@ export const __addComment = createAsyncThunk(
 export const __editComment = createAsyncThunk(
   "EDIT_COMMENT",
   async (payload) => {
-    await axios.patch(
-      `${process.env.REACT_APP_API_URL}/comments/${payload.id}`,
-      {
-        comment: payload.comment,
-      }
-    );
+    await axios.patch(`${api_url}/comments/${payload.id}`, {
+      comment: payload.comment,
+    });
     return payload;
   }
 );
